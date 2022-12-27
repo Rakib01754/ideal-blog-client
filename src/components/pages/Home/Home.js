@@ -4,6 +4,7 @@ import AllPosts from './AllPosts/AllPosts';
 import BlogCarousel from './BlogCarousel/BlogCarousel';
 import MemberChoice from './MembersChoice/MemberChoice';
 import PopularCategories from './PopularCategories/PopularCategories';
+import SubscribeArea from './SubscribeArea/SubscribeArea';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
                 <MemberChoice></MemberChoice>
                 <AllPosts></AllPosts>
                 <PopularCategories></PopularCategories>
+                <SubscribeArea></SubscribeArea>
             </Container>
         </div>
 

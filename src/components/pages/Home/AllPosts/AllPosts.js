@@ -12,7 +12,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'
+            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
         },
         {
             id: '02',
@@ -20,7 +20,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'
+            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
         },
         {
             id: '03',
@@ -28,7 +28,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'
+            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
         },
         {
             id: '04',
@@ -36,7 +36,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'
+            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
         },
         {
             id: '05',
@@ -44,7 +44,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'
+            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
         },
 
     ]
@@ -65,7 +65,11 @@ const AllPosts = () => {
                     display: 'flex',
                     justifyContent: 'center',
                 }}>
-                    <Button variant='contained'>View All</Button>
+                    <Button variant='outlined' sx={{
+                        '&:hover': {
+                            color: 'primary.main'
+                        }
+                    }}>View All</Button>
                 </Box>
             </Stack>
         </>

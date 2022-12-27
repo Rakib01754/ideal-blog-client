@@ -3,11 +3,17 @@ import React from 'react';
 
 const PopularCategory = ({ category }) => {
     return (
-        <Card sx={{ display: 'flex' }}>
+        <Card sx={{
+            display: 'flex',
+            '&:hover': {
+                boxShadow: '10px 10px 5px gray'
+            }
+
+        }}>
             <CardMedia
                 component="img"
                 sx={{ width: '40%' }}
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU"
+                image="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
                 alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>

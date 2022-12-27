@@ -24,14 +24,21 @@ const MemberChoice = () => {
                 }}>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem, itaque?
                 </Typography>
-                <Typography variant='h6' component='p' fontWeight='bold'>
+                <Typography variant='h6' component='p'>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde nesciunt blanditiis assumenda quas necessitatibus? Atque architecto voluptatibus quam mollitia veniam.
                 </Typography>
                 <Typography variant='p' component='p'>
-                    Posted By Rakib
+                    Posted By <span style={{
+                        fontWeight: 'bold'
+                    }}>Rakib</span>
                 </Typography>
                 <Box>
-                    <Button variant='contained' endIcon={<ArrowRightAltIcon />} sx={{
+                    <Button variant='outlined' endIcon={<ArrowRightAltIcon />} sx={{
+                        backgroundColor: 'white',
+                        color: 'primary.orange',
+                        '&:hover': {
+                            color: 'primary.main'
+                        }
                     }}>
                         Read More
                     </Button>
@@ -39,7 +46,7 @@ const MemberChoice = () => {
 
             </Stack>
             <Box width='100%'>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU" alt="" style={{
+                <img src="https://png.pngtree.com/thumb_back/fh260/back_pic/02/50/63/71577e1cf59d802.jpg" alt="" style={{
                     width: '100%',
                     height: '100%',
                     padding: "20px"

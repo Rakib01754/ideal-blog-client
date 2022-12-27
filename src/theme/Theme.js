@@ -4,9 +4,9 @@ import { createTheme } from "@mui/material";
 export const theme = createTheme({
     palette: {
         primary: {
-            main: '#F4F5F6',
+            main: '#000000',
             orange: '#FC4501',
-            black: '#000000'
+            gray: '#9FA6B2'
         }
     },
     components: {
@@ -16,6 +16,9 @@ export const theme = createTheme({
             }
         },
         MuiButton: {
+            defaultProps: {
+                disableFocusRipple: true
+            },
             styleOverrides: {
                 root: {
                     fontWeight: 'bold',

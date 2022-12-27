@@ -27,7 +27,14 @@ const CarouselItem = ({ item }) => {
                         {name}
                     </Typography>
                     <Box>
-                        <Button variant='contained' endIcon={<ArrowRightAltIcon />}>
+                        <Button variant='text' endIcon={<ArrowRightAltIcon />} sx={{
+                            color: 'white',
+                            borderBottom: '2px solid white',
+                            '&:hover': {
+                                color: 'primary.orange',
+                                borderBottom: `2px solid #FC4501`,
+                            }
+                        }}>
                             Read More
                         </Button>
                     </Box>

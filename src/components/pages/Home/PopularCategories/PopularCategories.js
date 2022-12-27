@@ -5,25 +5,21 @@ import PopularCategory from '../../../PopularCategory/PopularCategory';
 const PopularCategories = () => {
     const categoriesData = [
         {
-            id: '01',
             name: 'Name',
             totalPost: 5,
             shortDesc: 'Lorem ipsum dolor sit amet.'
         },
         {
-            id: '02',
             name: 'Name',
             totalPost: 6,
             shortDesc: 'Lorem ipsum dolor sit amet.'
         },
         {
-            id: '03',
             name: 'Name',
             totalPost: 7,
             shortDesc: 'Lorem ipsum dolor sit amet.'
         },
         {
-            id: '04',
             name: 'Name',
             totalPost: 8,
             shortDesc: 'Lorem ipsum dolor sit amet.'
@@ -40,17 +36,17 @@ const PopularCategories = () => {
     }))
     return (
         <CategoriesBox>
-            <Grid container spacing={2} sx={{
-                width: ['100%', '100%', '100%', '70%']
+            <Grid container spacing={3} sx={{
+                width: ['100%', '100%', '100%', '80%']
             }}>
                 {
-                    categoriesData.map(category => <Grid item xs={12} sm={6} md={6}>
-                        <PopularCategory key={category.id} category={category}></PopularCategory>
+                    categoriesData.map((category, i) => <Grid item xs={12} sm={6} md={6}>
+                        <PopularCategory key={i} category={category}></PopularCategory>
                     </Grid>)
                 }
             </Grid>
             <Stack spacing={2} sx={{
-                padding: [0, 0, 0, 8],
+                padding: [0, 0, 0, 4],
                 margin: '20px 0'
             }}>
                 <Typography variant='h4' component='h1' fontWeight='bold'>Popular Categories</Typography>

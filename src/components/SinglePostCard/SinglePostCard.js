@@ -13,6 +13,7 @@ const SinglePostCard = ({ post }) => {
         setIsHovering(false);
     };
     const StyledCard = styled(Stack)(({ theme }) => ({
+        position: 'relative',
         display: 'flex',
         flexDirection: "column",
         justifyContent: 'space-between',
@@ -22,13 +23,14 @@ const SinglePostCard = ({ post }) => {
         height: '300px',
         padding: '1rem',
         borderRadius: '10px',
+        color: 'white'
     }))
+
     return (
         <>
             <Grid item xs={12} sm={6} md={4} lg={3}
             >
                 <StyledCard color='primary.main' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-
                     <Box>
                         <Typography variant='p' >
                             {author}

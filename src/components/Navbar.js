@@ -35,11 +35,13 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="sticky">
+        <AppBar position="sticky" sx={{
+            backgroundColor: 'rgba(255,255,255,0.9)'
+        }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
-                        variant="h4"
+                        variant="h5"
                         noWrap
                         component="a"
                         href="/"
@@ -91,7 +93,7 @@ function Navbar() {
                         </Menu>
                     </Box>
                     <Typography
-                        variant="h5"
+                        variant="h6"
                         noWrap
                         component="a"
                         href=""
