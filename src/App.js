@@ -1,12 +1,13 @@
-import { Button } from '@mui/material';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "./theme/Theme";
+import Routes from "./routes/Routes";
 
 function App() {
   return (
-    <div className="App">
-      <Button variant="text">Text</Button>
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Routes></Routes>
+      <CssBaseline></CssBaseline>
+    </ThemeProvider>
   );
 }
 
