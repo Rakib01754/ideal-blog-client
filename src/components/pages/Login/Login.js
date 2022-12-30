@@ -23,13 +23,15 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
+                console.log(user)
                 toast.success('Login Successfull');
                 navigate('/')
             })
             .catch(error => {
                 const errorMessage = error.message;
-                toast.warning(errorMessage)
+                toast.error(errorMessage)
             })
+        form.reset()
     }
 
     const handleGoogleLogin = () => {
@@ -42,7 +44,7 @@ const Login = () => {
                 navigate('/')
             }).catch((error) => {
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                toast.error(errorMessage)
             });
     }
 
@@ -73,8 +75,9 @@ const Login = () => {
                     <Typography variant='caption' component='p' marginBottom='20px'>Please Enter the valid Information to login</Typography>
                     <form onSubmit={handleFormSubmit}>
                         <Stack spacing={2}>
-                            <TextField type="email" label="Enter Your Email" variant="outlined" fullWidth />
+                            <TextField type="email" name='email' label="Enter Your Email" variant="outlined" fullWidth />
                             <TextField
+                                name='password'
                                 label="Password"
                                 type="password"
                                 variant="outlined"

@@ -42,12 +42,12 @@ const Register = () => {
                     })
                     .catch(error => {
                         const errorMessage = error.message;
-                        toast.success(errorMessage)
+                        toast.error(errorMessage)
                     })
             })
             .catch(error => {
                 const errorMessage = error.message;
-                toast.success(errorMessage)
+                toast.error(errorMessage)
             })
     }
 
@@ -61,7 +61,7 @@ const Register = () => {
                 navigate('/')
             }).catch((error) => {
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                toast.error(errorMessage)
             });
     }
 
