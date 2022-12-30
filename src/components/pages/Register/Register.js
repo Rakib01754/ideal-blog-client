@@ -22,33 +22,52 @@ const Register = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault()
         const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        const gender = form.gender.value;
-        const userType = form.userType.value;
+        const imgHostKey = 'f0710972c31015981d2a08c9201ba982'
+        const image = form.image.files[0];
+        console.log(image)
+        const formData = new FormData();
+        formData.append("image", image);
 
-        signUp(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user)
-                toast.success(`${userType} registtaion success`)
-                updateProfile(user, {
-                    displayName: name,
-                })
-                    .then(result => {
-                        toast.success('Profile Updated')
-                        navigate('/')
-                    })
-                    .catch(error => {
-                        const errorMessage = error.message;
-                        toast.error(errorMessage)
-                    })
+        fetch(`https://api.imgbb.com/1/upload?key=${imgHostKey}`, {
+            method: "POST",
+            body: formData,
+        })
+            .then((res) => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const picture = imgData.data.url;
+                    const name = form.name.value;
+                    const email = form.email.value;
+                    const password = form.password.value;
+                    const gender = form.gender.value;
+                    const userType = form.userType.value;
+                    console.log(picture)
+
+                    signUp(email, password)
+                        .then(result => {
+                            const user = result.user;
+                            console.log(user)
+                            toast.success(`${userType} registtaion success`)
+                            updateProfile(user, {
+                                displayName: name,
+                                photoURL: picture
+                            })
+                                .then(result => {
+                                    toast.success('Profile Updated')
+                                    navigate('/')
+                                })
+                                .catch(error => {
+                                    const errorMessage = error.message;
+                                    toast.error(errorMessage)
+                                })
+                        })
+                        .catch(error => {
+                            const errorMessage = error.message;
+                            toast.error(errorMessage)
+                        })
+                }
             })
-            .catch(error => {
-                const errorMessage = error.message;
-                toast.error(errorMessage)
-            })
+
     }
 
     const handleGoogleLogin = () => {
@@ -102,6 +121,21 @@ const Register = () => {
                                 variant="outlined"
                                 fullWidth
                             />
+                            <Box>
+                                <Typography variant='caption' component='p' fontWeight='bold'>
+                                    Upload An Image
+                                </Typography>
+                                <Button
+                                    variant="outlined"
+                                    component="label"
+                                >
+                                    <input
+                                        name='image'
+                                        type="file"
+                                        accept="image/*"
+                                    />
+                                </Button>
+                            </Box>
                             <FormControl>
                                 <FormLabel sx={{
                                     textAlign: 'left'
