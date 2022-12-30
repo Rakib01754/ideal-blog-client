@@ -1,6 +1,6 @@
 import { Box, Grid, Stack, styled, Typography } from '@mui/material';
 import React from 'react';
-import PopularCategory from '../../../PopularCategory/PopularCategory';
+import Category from '../../../Category/Category';
 
 const PopularCategories = () => {
     const categoriesData = [
@@ -36,12 +36,12 @@ const PopularCategories = () => {
     }))
     return (
         <CategoriesBox>
-            <Grid container spacing={3} sx={{
+            <Grid container spacing={2} sx={{
                 width: ['100%', '100%', '100%', '80%']
             }}>
                 {
                     categoriesData.map((category, i) => <Grid item xs={12} sm={6} md={6}>
-                        <PopularCategory key={i} category={category}></PopularCategory>
+                        <Category key={i} category={category}></Category>
                     </Grid>)
                 }
             </Grid>

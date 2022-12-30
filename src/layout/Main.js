@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
@@ -8,7 +8,9 @@ const Main = () => {
     return (
         <Box>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <Container>
+                <Outlet></Outlet>
+            </Container>
             <Footer></Footer>
         </Box>
 

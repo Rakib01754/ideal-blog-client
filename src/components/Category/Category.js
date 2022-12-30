@@ -1,10 +1,13 @@
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 
-const PopularCategory = ({ category }) => {
+const Category = ({ category }) => {
+    const { categoryImage, categoryTitle, categoryName } = category
     return (
         <Card sx={{
             display: 'flex',
+            backgroundColor: '#F4F5F6',
+            height: '150px',
             '&:hover': {
                 boxShadow: '10px 10px 5px gray'
             }
@@ -12,20 +15,20 @@ const PopularCategory = ({ category }) => {
         }}>
             <CardMedia
                 component="img"
-                sx={{ width: '40%' }}
-                image="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                sx={{ width: '30%', padding: '10px' }}
+                image={categoryImage}
                 alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
+                <CardContent>
                     <Typography component="div" variant="h6">
-                        {category.name}
+                        {categoryName}
                     </Typography>
                     <Typography component="div" variant="p">
                         {category.totalPost} Posts
                     </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                        {category.shortDesc}
+                    <Typography variant="subtitle1" color="text.secondary" component="p">
+                        {categoryTitle}
                     </Typography>
                 </CardContent>
             </Box>
@@ -33,4 +36,4 @@ const PopularCategory = ({ category }) => {
     );
 };
 
-export default PopularCategory;
+export default Category;

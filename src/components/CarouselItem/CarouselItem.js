@@ -7,18 +7,26 @@ const CarouselItem = ({ item }) => {
     return (
         <>
             <Stack spacing={2} sx={{
-                backgroundImage: `url(${image})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
                 height: '70vh',
                 width: '100%',
-                backdropFilter: 'blur(20px)',
                 display: "flex",
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                position: 'relative',
+                '&>img': {
+                    position: 'absolute',
+                    width: '100%',
+                    zIndex: '-1',
+                    filter: 'blur(5px)'
+                },
+                '&:not(img)': {
+                    position: 'relative',
+                    zIndex: '1'
+                }
+
 
             }}>
+                <img src={image} alt="" />
                 <Container>
                     <Typography variant='h1' sx={{
                         fontSize: ['40px', '60px', '100px'],

@@ -12,7 +12,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
         },
         {
             id: '02',
@@ -20,7 +20,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
         },
         {
             id: '03',
@@ -28,7 +28,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
         },
         {
             id: '04',
@@ -36,7 +36,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
         },
         {
             id: '05',
@@ -44,7 +44,7 @@ const AllPosts = () => {
             category: 'Category',
             title: 'Name',
             details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJhbm5lcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
         },
 
     ]

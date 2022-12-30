@@ -16,9 +16,6 @@ export const theme = createTheme({
             }
         },
         MuiButton: {
-            defaultProps: {
-                disableFocusRipple: true
-            },
             styleOverrides: {
                 root: {
                     fontWeight: 'bold',

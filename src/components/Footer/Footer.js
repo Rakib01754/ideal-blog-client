@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const FooterWrapper = styled(Stack)(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '40px 0px',
+    padding: '20px 0px',
     margin: '20px 0px'
 }))
 
