@@ -3,7 +3,7 @@ import React from 'react';
 import AllPosts from './AllPosts/AllPosts';
 import BlogCarousel from './BlogCarousel/BlogCarousel';
 import MemberChoice from './MembersChoice/MemberChoice';
-import PopularCategories from './PopularCategories/PopularCategories';
+// import PopularCategories from './PopularCategories/PopularCategories';
 import SubscribeArea from './SubscribeArea/SubscribeArea';
 
 const Home = () => {
@@ -14,7 +14,6 @@ const Home = () => {
             <Container>
                 <MemberChoice></MemberChoice>
                 <AllPosts></AllPosts>
-                <PopularCategories></PopularCategories>
                 <SubscribeArea></SubscribeArea>
             </Container>
         </div>

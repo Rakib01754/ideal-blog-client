@@ -1,7 +1,6 @@
-import { Box, Button, Divider, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, Link, MenuItem, Paper, Radio, RadioGroup, Select, TextField, Typography } from '@mui/material';
+import { Box, Stack, Button, Divider, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, Link, MenuItem, Paper, Radio, RadioGroup, Select, TextField, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
-import { Stack } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -24,7 +23,6 @@ const Register = () => {
         const form = e.target;
         const imgHostKey = 'f0710972c31015981d2a08c9201ba982'
         const image = form.image.files[0];
-        console.log(image)
         const formData = new FormData();
         formData.append("image", image);
 
@@ -41,7 +39,6 @@ const Register = () => {
                     const password = form.password.value;
                     const gender = form.gender.value;
                     const userType = form.userType.value;
-                    console.log(picture)
 
                     signUp(email, password)
                         .then(result => {
@@ -52,9 +49,9 @@ const Register = () => {
                                 displayName: name,
                                 photoURL: picture
                             })
-                                .then(result => {
+                                .then(() => {
+                                    saveUserToDB(name, picture, userType, email, gender)
                                     toast.success('Profile Updated')
-                                    navigate('/')
                                 })
                                 .catch(error => {
                                     const errorMessage = error.message;
@@ -73,15 +70,40 @@ const Register = () => {
     const handleGoogleLogin = () => {
         googleSignIn(provider)
             .then((result) => {
-                const userType = 'Visitor'
+                const gender = "";
+                const userType = "Visitor";
                 const user = result.user;
-                console.log(user)
+                const name = user?.displayName;
+                const email = user?.email;
+                const picture = user?.photoURL;
+                saveUserToDB(name, picture, userType, email, gender)
                 toast.success(`${userType} Login Successful`)
-                navigate('/')
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 const errorMessage = error.message;
                 toast.error(errorMessage)
             });
+    }
+
+    const saveUserToDB = (name, picture, userType, email, gender) => {
+        const userData = { name, picture, userType, email, gender }
+        console.log(userData)
+        fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
     }
 
 
@@ -112,14 +134,15 @@ const Register = () => {
                     <Typography variant='caption' component='p' marginBottom='20px'>Please Enter the valid Information and register</Typography>
                     <form onSubmit={handleFormSubmit}>
                         <Stack spacing={2}>
-                            <TextField type="text" label="Enter Your Name" name='name' variant="outlined" fullWidth />
-                            <TextField name='email' type="email" label="Enter Your Email" variant="outlined" fullWidth />
+                            <TextField type="text" label="Enter Your Name" name='name' variant="outlined" fullWidth required />
+                            <TextField name='email' type="email" label="Enter Your Email" variant="outlined" fullWidth required />
                             <TextField
                                 name='password'
                                 label="Password"
                                 type="password"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                             <Box>
                                 <Typography variant='caption' component='p' fontWeight='bold'>
@@ -133,6 +156,7 @@ const Register = () => {
                                         name='image'
                                         type="file"
                                         accept="image/*"
+                                        required
                                     />
                                 </Button>
                             </Box>
@@ -144,6 +168,7 @@ const Register = () => {
                                     name='gender'
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
+                                    required
                                 >
                                     <FormControlLabel value="female" control={<Radio />} label="Female" />
                                     <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -158,6 +183,7 @@ const Register = () => {
                                 <Select
                                     name='userType'
                                     value={type}
+                                    required
                                     label="Type"
                                     onChange={handleChange}
                                 >

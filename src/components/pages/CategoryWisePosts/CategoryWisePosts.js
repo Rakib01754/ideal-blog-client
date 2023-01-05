@@ -1,7 +1,11 @@
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import SinglePostCard from '../../SinglePostCard/SinglePostCard';
 
-const Authors = () => {
+const CategoryWisePosts = () => {
+    const posts = useLoaderData()
+    console.log(posts)
     return (
         <Stack spacing={3}>
             <Divider sx={{
@@ -11,18 +15,19 @@ const Authors = () => {
                 height: '3px'
             }}></Divider>
             <Typography variant='h2' component='h2' fontWeight='bold' sx={{
-                fontSize: ['30px', '45px', '60px']
-            }}>Authors</Typography>
-            <Typography variant='h6' component='p' sx={{
-                fontSize: ['15px', '20px', '25px']
-            }}>Incredible people, incredible stories</Typography>
+                fontSize: ['20px', '30px', '40px']
+            }}>Posts From {posts[0].category} Category</Typography>
 
             <Grid container spacing={2}>
-                <Typography>This is authors</Typography>
+
+                {
+                    posts.map(post => <SinglePostCard key={post.id} post={post}></SinglePostCard>)
+                }
+
             </Grid>
 
         </Stack>
     );
 };
 
-export default Authors;
+export default CategoryWisePosts;

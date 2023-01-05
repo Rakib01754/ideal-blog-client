@@ -40,8 +40,8 @@ const PopularCategories = () => {
                 width: ['100%', '100%', '100%', '80%']
             }}>
                 {
-                    categoriesData.map((category, i) => <Grid item xs={12} sm={6} md={6}>
-                        <Category key={i} category={category}></Category>
+                    categoriesData.map((category, idx) => <Grid key={idx} item xs={12} sm={6} md={6}>
+                        <Category category={category}></Category>
                     </Grid>)
                 }
             </Grid>

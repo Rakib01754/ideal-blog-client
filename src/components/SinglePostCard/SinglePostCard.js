@@ -1,8 +1,9 @@
 import React from 'react';
 import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom'
 
 const SinglePostCard = ({ post }) => {
-    const { author, category, title, details, image } = post
+    const { authorName, category, title, details, postImage, postedDate, authorImage, _id } = post
 
     return (
         <>
@@ -10,37 +11,39 @@ const SinglePostCard = ({ post }) => {
             >
                 <Card sx={{
                     border: '0.5px solid black',
+                    height: '470px',
+                    position: 'relative',
                     '&:hover': {
                         boxShadow: '10px 10px 5px gray'
                     }
                 }} >
                     <CardHeader
                         avatar={
-                            <Avatar>
-                                R
+                            <Avatar src={authorImage}>
                             </Avatar>
                         }
-                        title={`By ${author}`}
-                        subheader="September 14, 2016"
+                        title={`By ${authorName}`}
+                        subheader={postedDate}
                     />
                     <CardMedia
                         component="img"
-                        height="194"
-                        image={image}
+                        height="200px"
+                        image={postImage}
                         alt={title}
                     />
                     <CardContent>
                         <Typography variant="p" fontWeight='bold' color="text.primary">
                             {category}
                         </Typography>
-                        <Typography variant="h6" fontWeight='bold' color="text.primary">
+                        <Typography variant="subtitle1" component='p' fontWeight='bold' color="text.primary">
                             {title}
                         </Typography>
                         <Typography variant="body2" color="text.primary">
-                            {details}
+                            {details ? details.slice(0, 80) + '...' : details}
                         </Typography>
-                        <Button variant='outlined' sx={{
-                            mt: 2,
+                        <Button variant='outlined' component={RouterLink} to={`/post/${_id}`} sx={{
+                            position: 'absolute',
+                            bottom: '10px',
                             '&:hover': {
                                 color: 'black'
                             }

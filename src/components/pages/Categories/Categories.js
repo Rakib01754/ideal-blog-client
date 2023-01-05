@@ -2,9 +2,9 @@ import { Divider, Grid, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Category from '../../Category/Category';
 
+
 const Categories = () => {
     const [categories, setCategories] = useState([])
-    console.log(categories)
 
     useEffect(() => {
         fetch('http://localhost:5000/categories')

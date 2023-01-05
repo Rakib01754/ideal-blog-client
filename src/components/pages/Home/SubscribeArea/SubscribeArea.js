@@ -15,7 +15,7 @@ const SubscribeArea = () => {
     }))
     return (
         <SubscribeBox>
-            <Box spacing sx={{
+            <Box sx={{
                 width: ['100%', '100%', '100%', '85%']
             }}>
                 <Typography variant='h4' component='h4' fontWeight='bold' textAlign='center' sx={{

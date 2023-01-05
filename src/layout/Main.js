@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 
 const Main = () => {
     return (
-        <Box>
+        <Box sx={{ backgroundColor: '#FFE87C' }}>
             <Navbar></Navbar>
             <Container>
                 <Outlet></Outlet>

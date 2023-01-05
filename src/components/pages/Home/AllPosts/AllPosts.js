@@ -1,53 +1,19 @@
 import { Box, Button, Grid, Stack } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../SectionTitle/SectionTitle';
 import SinglePostCard from '../../../SinglePostCard/SinglePostCard';
 
 
 const AllPosts = () => {
-    const postItems = [
-        {
-            id: '01',
-            author: 'Rakib',
-            category: 'Category',
-            title: 'Name',
-            details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
-        },
-        {
-            id: '02',
-            author: 'Rakib',
-            category: 'Category',
-            title: 'Name',
-            details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
-        },
-        {
-            id: '03',
-            author: 'Rakib',
-            category: 'Category',
-            title: 'Name',
-            details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
-        },
-        {
-            id: '04',
-            author: 'Rakib',
-            category: 'Category',
-            title: 'Name',
-            details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
-        },
-        {
-            id: '05',
-            author: 'Rakib',
-            category: 'Category',
-            title: 'Name',
-            details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eos.',
-            image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'
-        },
+    const [allPosts, setAllPosts] = useState([])
 
-    ]
+    useEffect(() => {
+        fetch('http://localhost:5000/posts')
+            .then(res => res.json())
+            .then(data => {
+                setAllPosts(data)
+            })
+    }, [])
     return (
         <>
             <SectionTitle>
@@ -58,7 +24,7 @@ const AllPosts = () => {
                     marginTop: 4
                 }}>
                     {
-                        postItems.map(post => <SinglePostCard key={post.id} post={post}></SinglePostCard>)
+                        allPosts.map(post => <SinglePostCard key={post.id} post={post}></SinglePostCard>)
                     }
                 </Grid>
                 <Box sx={{
