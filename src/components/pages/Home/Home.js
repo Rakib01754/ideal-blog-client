@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import React from 'react';
-import AllPosts from './AllPosts/AllPosts';
 import BlogCarousel from './BlogCarousel/BlogCarousel';
+import HomePosts from './HomePosts/HomePosts';
 import MemberChoice from './MembersChoice/MemberChoice';
 // import PopularCategories from './PopularCategories/PopularCategories';
 import SubscribeArea from './SubscribeArea/SubscribeArea';
@@ -13,7 +13,7 @@ const Home = () => {
             <BlogCarousel></BlogCarousel>
             <Container>
                 <MemberChoice></MemberChoice>
-                <AllPosts></AllPosts>
+                <HomePosts></HomePosts>
                 <SubscribeArea></SubscribeArea>
             </Container>
         </div>

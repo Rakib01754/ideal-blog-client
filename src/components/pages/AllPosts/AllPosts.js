@@ -1,14 +1,17 @@
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import SingleAuthor from '../../SingleAuthor/SingleAuthor';
+import SinglePostCard from '../../SinglePostCard/SinglePostCard';
 
-const Authors = () => {
-    const [authors, setAuthors] = useState([])
+const AllPosts = () => {
+    const [allPosts, setAllPosts] = useState([])
+    console.log(allPosts)
 
     useEffect(() => {
-        fetch('http://localhost:5000/authors')
+        fetch('http://localhost:5000/allposts')
             .then(res => res.json())
-            .then(data => setAuthors(data))
+            .then(data => {
+                setAllPosts(data)
+            })
     }, [])
     return (
         <Stack spacing={3}>
@@ -20,17 +23,15 @@ const Authors = () => {
             }}></Divider>
             <Typography variant='h2' component='h2' fontWeight='bold' sx={{
                 fontSize: ['30px', '45px', '60px']
-            }}>Our Authors</Typography>
+            }}>Posts</Typography>
             <Typography variant='h6' component='p' sx={{
                 fontSize: ['15px', '20px', '25px']
-            }}>Incredible people, incredible stories</Typography>
+            }}>Browse all the posts from here</Typography>
 
             <Grid container spacing={2}>
                 {
-                    authors.map(author =>
-                        <Grid key={author._id} item xs={12} sm={12} md={6} lg={4}>
-                            <SingleAuthor author={author}></SingleAuthor>
-                        </Grid>
+                    allPosts.map(post =>
+                        <SinglePostCard key={post._id} post={post}></SinglePostCard>
                     )
                 }
             </Grid>
@@ -39,4 +40,4 @@ const Authors = () => {
     );
 };
 
-export default Authors;
+export default AllPosts;

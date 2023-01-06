@@ -2,13 +2,13 @@ import { Box, Button, Grid, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../SectionTitle/SectionTitle';
 import SinglePostCard from '../../../SinglePostCard/SinglePostCard';
+import { Link as RouterLink } from 'react-router-dom'
 
-
-const AllPosts = () => {
+const HomePosts = () => {
     const [allPosts, setAllPosts] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/posts')
+        fetch('http://localhost:5000/homeposts')
             .then(res => res.json())
             .then(data => {
                 setAllPosts(data)
@@ -31,7 +31,7 @@ const AllPosts = () => {
                     display: 'flex',
                     justifyContent: 'center',
                 }}>
-                    <Button variant='outlined' sx={{
+                    <Button component={RouterLink} to='/allposts' variant='outlined' sx={{
                         '&:hover': {
                             color: 'primary.main'
                         }
@@ -42,4 +42,4 @@ const AllPosts = () => {
     );
 };
 
-export default AllPosts;
+export default HomePosts;

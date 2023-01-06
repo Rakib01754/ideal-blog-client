@@ -9,8 +9,9 @@ import { Link as RouterLink } from 'react-router-dom'
 
 const PostDetails = () => {
     const post = useLoaderData()
-    const { authorImage, authorName, postedDate, category, title, details, totalLike, postImage } = post
+    const { authorImage, authorName, authorEmail, postedDate, category, title, details, totalLike, postImage } = post
     const [topPost, setTopPost] = useState([])
+    const [user, setUser] = useState({})
     useEffect(() => {
         fetch('http://localhost:5000/mostLiked')
             .then(res => res.json())
@@ -18,6 +19,13 @@ const PostDetails = () => {
                 setTopPost(data)
             })
     }, [])
+    useEffect(() => {
+        fetch(`http://localhost:5000/user?email=${authorEmail}`)
+            .then(res => res.json())
+            .then(data => {
+                setUser(data)
+            })
+    }, [authorEmail])
     return (
         <Grid sx={{
             display: 'flex',
@@ -30,9 +38,11 @@ const PostDetails = () => {
             }}>
                 <Typography sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: 2 }}>
                     <Avatar src={authorImage}>
-                    </Avatar> By <span style={{ fontWeight: 'bold' }}>{authorName}</span>
+                    </Avatar> By <Typography component='span' variant='body2' fontWeight='bold'>{authorName}</Typography>
                 </Typography>
-                <Typography variant='h2' component='h2'>{title}</Typography>
+                <Typography variant='h2' component='h2' sx={{
+                    fontSize: ['30px', '40px', '50px', '60px']
+                }}>{title}</Typography>
                 <Box sx={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
                     <Typography sx={{ display: 'flex', alignItems: 'center', fontWeight: 'bold' }}><LocalOfferOutlinedIcon sx={{
                         marginRight: 1
@@ -42,7 +52,7 @@ const PostDetails = () => {
                     }} />{postedDate}</Typography>
                 </Box>
                 <Box><img src={postImage} alt="postimage" width='100%' height='400px' /></Box>
-                <Typography variant='p' component='p'>{details}</Typography>
+                <Typography variant='subtitle2' component='p'>{details}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Typography sx={{ fontWeight: 'bold' }}>Total Like: {totalLike} </Typography>
                     <IconButton sx={{ color: 'primary.orange' }}><ThumbUpOutlinedIcon /></IconButton>
@@ -56,26 +66,32 @@ const PostDetails = () => {
             }}>
                 <Box sx={{ marginBottom: '20px' }}>
                     <Typography variant='subtitle1' color='primary.orange' component='p' marginBottom='20px' fontWeight='bold' sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}><AccountCircleOutlinedIcon />About The Authors</Typography>
-                    <Paper width='80%' mx='auto'>
+                    <Paper>
                         <CardActionArea>
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: ['left', 'left', 'left', 'center'] }}>
                                 <CardMedia
                                     sx={{
-                                        width: '30%'
+                                        width: '30%',
+                                        padding: '10px'
+
                                     }}
                                     component="img"
                                     image={authorImage}
                                     alt=""
                                 />
-                                <Typography variant="h5" component="div" fontWeight='bold' marginLeft='10px'>
-                                    {authorName}
-                                </Typography>
+                                <Box>
+                                    <Typography variant="h6" color='primary.orange' component={RouterLink} to={`../user/${user._id}`} fontWeight='bold' marginLeft='10px'>
+                                        {user?.name}
+                                    </Typography>
+                                    <Typography variant='p' component='p' textTransform='capitalize' sx={{ display: 'flex', gap: '10px', alignItems: 'center', marginLeft: '10px' }}>
+                                        <Typography variant='body1' component='p' fontWeight='bold'>Title:</Typography>{user?.userTitle ? user?.userTitle : ''}
+                                    </Typography>
+                                </Box>
                             </Box>
                             <CardContent>
 
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    {user?.about}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -91,17 +107,16 @@ const PostDetails = () => {
 
 
                                 topPost.map(post => <Grid key={post._id} item xs={12} sm={6} md={6} lg={12}>
-                                    <Paper width='80%' mx='auto'>
+                                    <Paper>
 
                                         <CardActionArea>
                                             <CardMedia sx={{ width: '100%' }}
                                                 component="img"
-                                                height="140"
                                                 image={post.postImage}
                                                 alt={post.title}
                                             />
                                             <CardContent>
-                                                <Typography gutterBottom variant="h5" component="div">
+                                                <Typography variant="h5" component="div">
                                                     {post.title}
                                                 </Typography>
                                                 <Typography variant="body2" color="text.secondary">

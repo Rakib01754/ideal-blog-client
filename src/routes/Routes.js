@@ -1,5 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AllPosts from '../components/pages/AllPosts/AllPosts';
+import AuthorDetails from '../components/pages/AuthorDetails/AuthorDetails';
 import Authors from '../components/pages/Authors/Authors';
 import Categories from '../components/pages/Categories/Categories';
 import CategoryWisePosts from '../components/pages/CategoryWisePosts/CategoryWisePosts';
@@ -36,6 +38,10 @@ const Routes = () => {
                     element: <Register></Register>
                 },
                 {
+                    path: '/allposts',
+                    element: <AllPosts></AllPosts>
+                },
+                {
                     path: '/posts/:categoryId',
                     loader: ({ params }) =>
                         fetch(
@@ -50,6 +56,14 @@ const Routes = () => {
                             `http://localhost:5000/post/${params.postId}`
                         ),
                     element: <PostDetails></PostDetails>
+                },
+                {
+                    path: '/user/:userId',
+                    loader: ({ params }) =>
+                        fetch(
+                            `http://localhost:5000/user/${params.userId}`
+                        ),
+                    element: <AuthorDetails></AuthorDetails>
                 },
             ]
         }
