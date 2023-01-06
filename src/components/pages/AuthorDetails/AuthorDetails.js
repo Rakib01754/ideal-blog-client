@@ -6,7 +6,7 @@ import SinglePostCard from '../../SinglePostCard/SinglePostCard';
 const AuthorDetails = () => {
     const authorData = useLoaderData()
     console.log(authorData)
-    const { name, picture, userTitle, _id, email, about, gender } = authorData
+    const { name, picture, userTitle, _id, email, about, gender, userType } = authorData
 
     const [posts, setPosts] = useState([])
 
@@ -38,6 +38,9 @@ const AuthorDetails = () => {
                         </Typography>
                         <Typography variant='p' component='p' sx={{ display: 'flex', gap: '10px', textTransform: 'capitalize' }} >
                             <Typography variant='span' component='p' fontWeight='bold'>Title:</Typography>{userTitle ? userTitle : ''}
+                        </Typography>
+                        <Typography variant='p' component='p' sx={{ display: 'flex', gap: '10px', textTransform: 'capitalize' }} >
+                            <Typography variant='span' component='p' fontWeight='bold'>Status:</Typography>{userType ? userType : ''}
                         </Typography>
                         <Typography variant='p' component='p' sx={{ display: 'flex', gap: '10px', textTransform: 'capitalize' }} >
                             <Typography variant='span' component='p' fontWeight='bold'>Gender:</Typography>{gender ? gender : ''}

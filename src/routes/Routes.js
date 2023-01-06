@@ -5,9 +5,11 @@ import AuthorDetails from '../components/pages/AuthorDetails/AuthorDetails';
 import Authors from '../components/pages/Authors/Authors';
 import Categories from '../components/pages/Categories/Categories';
 import CategoryWisePosts from '../components/pages/CategoryWisePosts/CategoryWisePosts';
+import Dashboard from '../components/pages/Dashboard/Dashboard';
 import Home from '../components/pages/Home/Home';
 import Login from '../components/pages/Login/Login';
 import PostDetails from '../components/pages/PostDetails/PostDetails';
+import Profile from '../components/pages/Profile/Profile';
 import Register from '../components/pages/Register/Register';
 import Main from '../layout/Main';
 
@@ -40,6 +42,14 @@ const Routes = () => {
                 {
                     path: '/allposts',
                     element: <AllPosts></AllPosts>
+                },
+                {
+                    path: '/profile',
+                    element: <Profile></Profile>
+                },
+                {
+                    path: '/dashboard',
+                    element: <Dashboard></Dashboard>
                 },
                 {
                     path: '/posts/:categoryId',
