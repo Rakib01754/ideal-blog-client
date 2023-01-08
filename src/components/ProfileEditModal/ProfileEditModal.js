@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Modal, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material';
 import { toast } from 'react-hot-toast';
 
-const ProfileEditModal = ({ open, handleClose, currentUser }) => {
+const ProfileEditModal = ({ open, handleClose, currentUser, refetch }) => {
     const { name, picture, userType, email, gender, userTitle, about, _id } = currentUser
     const style = {
         position: 'absolute',
@@ -30,6 +30,7 @@ const ProfileEditModal = ({ open, handleClose, currentUser }) => {
             gender: newGender,
             about: newAbout
         }
+
         fetch(`http://localhost:5000/userprofile/${_id}`, {
             method: 'PUT',
             headers: {
@@ -41,7 +42,7 @@ const ProfileEditModal = ({ open, handleClose, currentUser }) => {
             .then(data => {
                 console.log(data)
                 if (data.modifiedCount) {
-                    toast.success('Edit Successfull, Please Refresh', {
+                    toast.success('Edit Successfull', {
                         style: {
                             border: '1px solid #713200',
                             padding: '16px',
@@ -53,6 +54,7 @@ const ProfileEditModal = ({ open, handleClose, currentUser }) => {
                         },
                     });
                     form.reset();
+                    refetch()
                     handleClose(true)
 
                 }

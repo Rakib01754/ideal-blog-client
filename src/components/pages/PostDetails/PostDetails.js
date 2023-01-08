@@ -1,31 +1,32 @@
 import { Avatar, Box, Button, CardActionArea, CardActions, CardContent, CardMedia, Grid, IconButton, Paper, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Link as RouterLink } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query';
 
 const PostDetails = () => {
     const post = useLoaderData()
     const { authorImage, authorName, authorEmail, postedDate, category, title, details, totalLike, postImage } = post
-    const [topPost, setTopPost] = useState([])
-    const [user, setUser] = useState({})
-    useEffect(() => {
-        fetch('http://localhost:5000/mostLiked')
-            .then(res => res.json())
-            .then(data => {
-                setTopPost(data)
-            })
-    }, [])
-    useEffect(() => {
-        fetch(`http://localhost:5000/user?email=${authorEmail}`)
-            .then(res => res.json())
-            .then(data => {
-                setUser(data)
-            })
-    }, [authorEmail])
+    const { data: topPost = [] } = useQuery({
+        queryKey: ['topPost'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/mostLiked')
+            const data = await res.json()
+            return data;
+        }
+    })
+    const { data: user = {} } = useQuery({
+        queryKey: ['user', authorEmail],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/user?email=${authorEmail}`)
+            const data = await res.json()
+            return data;
+        }
+    })
     return (
         <Grid sx={{
             display: 'flex',

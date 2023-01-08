@@ -1,19 +1,19 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import CarouselItem from '../../../CarouselItem/CarouselItem';
 
 const BlogCarousel = () => {
 
-    const [featuredPosts, setFeaturedPosts] = useState([])
+    const { data: featuredPosts = [] } = useQuery({
+        queryKey: ['featuredPosts'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/adminChoiches')
+            const data = await res.json()
+            return data;
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/adminChoiches')
-            .then(response => {
-                const data = response.data;
-                setFeaturedPosts(data)
-            })
-    }, [])
+        }
+    })
 
     return (
         <Carousel sx={{

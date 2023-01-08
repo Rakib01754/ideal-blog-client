@@ -1,5 +1,6 @@
 import { Box, Button, Paper, Stack, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import ProfileEditModal from '../../ProfileEditModal/ProfileEditModal';
 
@@ -8,15 +9,14 @@ const Profile = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const { user } = useContext(AuthContext)
-    const [currentUser, setCurrentUser] = useState({})
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/user?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setCurrentUser(data)
-            })
-    }, [user?.email])
+    const { data: currentUser = {}, refetch } = useQuery({
+        queryKey: ['currentUser', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/user?email=${user?.email}`)
+            const data = await res.json()
+            return data;
+        }
+    })
 
     return (
         <Stack>
@@ -57,7 +57,7 @@ const Profile = () => {
                     }}>Edit Details</Button>
                 </Box>
             </Paper>
-            <ProfileEditModal open={open} handleClose={handleClose} currentUser={currentUser}></ProfileEditModal>
+            <ProfileEditModal open={open} handleClose={handleClose} currentUser={currentUser} refetch={refetch}></ProfileEditModal>
         </Stack>
     );
 };

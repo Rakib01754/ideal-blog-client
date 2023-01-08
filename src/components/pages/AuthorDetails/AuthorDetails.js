@@ -1,20 +1,21 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import SinglePostCard from '../../SinglePostCard/SinglePostCard';
 
 const AuthorDetails = () => {
     const authorData = useLoaderData()
-    console.log(authorData)
     const { name, picture, userTitle, _id, email, about, gender, userType } = authorData
+    const { data: posts = [] } = useQuery({
+        queryKey: ['posts', email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/posts?email=${email}`)
+            const data = await res.json()
+            return data;
+        }
+    })
 
-    const [posts, setPosts] = useState([])
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/posts?email=${email}`)
-            .then(res => res.json())
-            .then(data => setPosts(data))
-    }, [email])
 
     return (
         <Stack spacing={2}>

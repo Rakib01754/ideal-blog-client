@@ -1,15 +1,17 @@
 import { Divider, Grid, Stack, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import SingleAuthor from '../../SingleAuthor/SingleAuthor';
 
 const Authors = () => {
-    const [authors, setAuthors] = useState([])
-
-    useEffect(() => {
-        fetch('http://localhost:5000/authors')
-            .then(res => res.json())
-            .then(data => setAuthors(data))
-    }, [])
+    const { data: authors = [] } = useQuery({
+        queryKey: ['authors'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/authors')
+            const data = await res.json()
+            return data;
+        }
+    })
     return (
         <Stack spacing={3}>
             <Divider sx={{

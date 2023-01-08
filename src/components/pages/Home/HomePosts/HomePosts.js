@@ -1,19 +1,20 @@
 import { Box, Button, Grid, Stack } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SectionTitle from '../../../SectionTitle/SectionTitle';
 import SinglePostCard from '../../../SinglePostCard/SinglePostCard';
 import { Link as RouterLink } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query';
 
 const HomePosts = () => {
-    const [allPosts, setAllPosts] = useState([])
+    const { data: allPosts = [] } = useQuery({
+        queryKey: ['allPosts'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/homeposts')
+            const data = await res.json()
+            return data;
+        }
+    })
 
-    useEffect(() => {
-        fetch('http://localhost:5000/homeposts')
-            .then(res => res.json())
-            .then(data => {
-                setAllPosts(data)
-            })
-    }, [])
     return (
         <>
             <SectionTitle>

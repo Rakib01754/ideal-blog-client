@@ -1,20 +1,24 @@
 import { Box, Button, Stack, styled, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SectionTitle from '../../../SectionTitle/SectionTitle';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link as RouterLink } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
+import { useQuery } from '@tanstack/react-query';
 
 
 const MemberChoice = () => {
-    const [topPost, setTopPost] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:5000/mostLiked')
-            .then(res => res.json())
-            .then(data => {
-                setTopPost(data)
-            })
-    }, [])
+    const { data: topPost = [] } = useQuery({
+        queryKey: ['totalPost'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/mostLiked')
+            const data = await res.json()
+            return data;
+        }
+
+
+    })
+
     const BoxWrapper = styled(Box)(({ theme }) => ({
         marginBottom: '2rem',
         display: 'flex',
